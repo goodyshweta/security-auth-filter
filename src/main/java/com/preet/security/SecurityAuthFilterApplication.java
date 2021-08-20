@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SecurityAuthFilterAppApplication {
+public class SecurityAuthFilterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SecurityAuthFilterAppApplication.class, args);
+		SpringApplication.run(SecurityAuthFilterApplication.class, args);
 	}
 
 }
