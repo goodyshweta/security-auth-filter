@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SecurityAuthFilterApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SecurityAuthFilterApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SecurityAuthFilterApplication.class, args);
+    }
 
 }
