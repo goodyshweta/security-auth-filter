@@ -55,7 +55,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         } else {
             String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-                log.info("Invoking doFilterInternal for Authorization");
+                log.info("Invoking filter for jwt token Authorization");
                 try {
                     String token = authorizationHeader.substring("Bearer ".length());
                     Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
@@ -68,6 +68,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userName, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                     filterChain.doFilter(request, response);
+                    log.info("Authorization Granted for accessing resources");
                 } catch (Exception exception) {
                     log.error("Error logging in {}", exception.getMessage());
                     response.setHeader("error", exception.getMessage());
