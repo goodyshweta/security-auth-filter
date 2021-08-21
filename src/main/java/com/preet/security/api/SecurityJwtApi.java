@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -20,11 +21,12 @@ public class SecurityJwtApi {
     private AuthenticationManager authenticationManager;
 
 
-    @PostMapping(value = "/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
-            request.getParameter("user");
+    @PostMapping(value = "/authorization")
+    public ResponseEntity<?> checkTokenAuthorization(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            //request.getParameter("user");
             String userName = (String) request.getAttribute("userName");
-            log.info("userName : {} authenticated successfully", userName);
-            return ResponseEntity.ok().body("Token authenticated successfully");
+            String[] roles = (String[]) request.getAttribute("roles");
+            log.info("Authorized successfully user {} having roles {}", userName,roles);
+            return ResponseEntity.ok().body("Token Authorized successfully for roles " + Arrays.deepToString(roles));
     }
 }
